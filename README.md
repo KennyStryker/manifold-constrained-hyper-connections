@@ -2,7 +2,7 @@
 
 A PyTorch implementation of [*Manifold-Constrained Hyper-Connections (mHC)*](https://arxiv.org/pdf/2512.24880), an advanced multi-stream residual connection mechanism for deep learning models. This module dynamically determines stream mixing based on input while constraining the parameters to mathematical manifolds such as Sinkhorn.
 
-![mHC Overview](assets/mhc.png)
+<div align="center"><img src="https://raw.githubusercontent.com/KennyStryker/manifold-constrained-hyper-connections/refs/heads/main/assets/mhc.png" alt="MHC Architecture"/></div>
 
 ## 🔍 Features
 
