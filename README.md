@@ -1,6 +1,6 @@
 # mHC: Manifold-Constrained Hyper-Connections
 
-A PyTorch implementation of [*Manifold-Constrained Hyper-Connections (mHC)*](https://arxiv.org/pdf/2512.24880), an advanced multi-stream residual connection mechanism for deep learning models. This module dynamically determines stream mixing based on input while constraining the parameters to mathematical manifolds such as Sinkhorn.
+A PyTorch implementation of [*Manifold-Constrained Hyper-Connections (mHC)*](https://arxiv.org/pdf/2512.24880), a multi-stream residual connection mechanism for deep learning models. This module dynamically determines stream mixing based on input while constraining the parameters to mathematical manifolds such as Sinkhorn.
 
 <div align="center"><img src="https://raw.githubusercontent.com/KennyStryker/manifold-constrained-hyper-connections/refs/heads/main/assets/mhc.png" alt="MHC Architecture"/></div>
 
@@ -13,6 +13,11 @@ A PyTorch implementation of [*Manifold-Constrained Hyper-Connections (mHC)*](htt
 ## 📦 Installation
 
 Make sure you have Python 3.12+ and [Poetry](https://python-poetry.org/) installed.
+
+### Using pip
+```bash
+pip install mhc-pytorch
+```
 
 ### From the source
 ```bash
