@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mhc-pytorch"
-version = "0.2.2"
+version = "0.2.3"
 description = "A PyTorch implementation of Manifold-Constrained Hyper-Connections (mHC), a multi-stream residual connection mechanism for deep learning models with mathematical constraints."
 authors = ["Kenny Stryker <nggkenny@gmail.com>"]
 license = "MIT"

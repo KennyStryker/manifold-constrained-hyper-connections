@@ -7,6 +7,8 @@ dynamically determined by the input and constrained to mathematical
 manifolds, such as Sigmoid for scalars and Sinkhorn for matrices.
 """
 
+from typing import Literal
+
 import torch
 import torch.nn.functional as F
 from torch import nn
@@ -29,13 +31,15 @@ class ManifoldHyperConnections(nn.Module):
         dim (int): The hidden dim of the model.
         num_streams (int): Number of parallel residual streams.
         block (nn.Module): The transformation function F (ex: Attention, MLP, etc).
+        collapse_mode (Literal["weighted", "mean"]): Method to collapse streams. Defaults to "weighted".
     """
 
-    def __init__(self, dim: int, num_streams: int, block: nn.Module):
+    def __init__(self, dim: int, num_streams: int, block: nn.Module, collapse_mode: Literal["weighted", "mean"] = "mean"):
         super().__init__()
         self.num_streams = num_streams
         self.block = block
         self.dim = dim
+        self.collapse_mode = collapse_mode
 
         # x_l is flattened, so the input dim is num_streams * dim
         input_vec_dim = num_streams * dim
@@ -105,5 +109,9 @@ class ManifoldHyperConnections(nn.Module):
         out_streams = mixed_streams + post_block_out  # [bs, seq_len, num_streams, dim]
 
         # Collapse streams
-        out = out_streams.sum(dim=2)  # [bs, seq_len, dim]
-        return out
+        if self.collapse_mode == "weighted":
+            # Uses learned h_pre to select important streams
+            return torch.sum(out_streams * h_pre.unsqueeze(-1), dim=2)
+
+        # Mean pooling across streams
+        return out_streams.mean(dim=2)
